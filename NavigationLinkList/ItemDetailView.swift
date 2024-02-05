@@ -15,7 +15,7 @@ struct ItemDetailView: View {
     // 表示対象のアイテム
     var item: Item? = nil
     // 保存を行った際に呼び出すコールバック
-    var onRegister: ((Item) -> Void)? = nil
+    var onSave: ((Item) -> Void)? = nil
 
     // 各入力文字列
     @State private var name = ""
@@ -43,10 +43,10 @@ struct ItemDetailView: View {
                 Button(action: {
                     if let item = item {
                         // このビューにアイテムが渡されていれば、それをコピーした（idを引き継いだ）アイテムを返す
-                        onRegister?(Item(id: item.id, name: name, description: description))
+                        onSave?(Item(id: item.id, name: name, description: description))
                     } else {
                         // アイテムが渡されていなければ、新しく作成したアイテムを返す
-                        onRegister?(Item(name: name, description: description))
+                        onSave?(Item(name: name, description: description))
                     }
                     // 画面を閉じる
                     dismiss()

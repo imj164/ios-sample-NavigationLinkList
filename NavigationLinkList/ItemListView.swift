@@ -19,7 +19,7 @@ struct ItemListView: View {
             // 各アイテム（ナビゲーションリンク付き）
             ForEach(manager.items) { item in
                 // アイテムを選択すると、アイテム詳細画面へ遷移
-                NavigationLink(destination: ItemDetailView(item: item, onRegister: { newItem in
+                NavigationLink(destination: ItemDetailView(item: item, onSave: { newItem in
                     // ItemDetailView()で保存が行われたら、アイテムを更新する
                     manager.update(newItem)
                 })) {
@@ -40,7 +40,7 @@ struct ItemListView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 // アイテムの新規追加（アイテム詳細画面へ遷移）
-                NavigationLink(destination: ItemDetailView(item: nil, onRegister: { newItem in
+                NavigationLink(destination: ItemDetailView(item: nil, onSave: { newItem in
                     // ItemDetailView()で保存が行われたら、アイテムを更新する（この場合は新規追加される）
                     manager.update(newItem)
                 })) {
